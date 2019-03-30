@@ -1,0 +1,11 @@
+image: venkatasaikatepalli/vue3saibase:latest
+
+pages:
+  stage: deploy
+  script:
+  - npm install
+  - npm run build
+  - cd dist
+  - aws s3 sync . s3://<bucket_name> --acl=public-read
+  only:
+  - master
